@@ -57,6 +57,828 @@
 </head>
 <body>
   
+  <!-- ========== NOISE OVERLAY ========== -->
+  <div class="noise-overlay"></div>
+
+  <!-- ========== SCROLL PROGRESS ========== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ========== MOUSE GLOW ========== -->
+  <div class="mouse-glow" id="mouseGlow"></div>
+
+  <!-- ========== CUSTOM CURSOR ========== -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ========== PAGE TRANSITION ========== -->
+  <div class="page-transition" id="pageTransition"></div>
+
+  <!-- ========== LOADER ========== -->
+  <div class="loader" id="loader">
+    <div class="loader-counter" id="loaderCounter">0</div>
+    <div class="loader-bar">
+      <div class="loader-bar-fill" id="loaderBarFill"></div>
+    </div>
+    <div class="loader-text">Loading experience</div>
+  </div>
+
+  <!-- ========== SEARCH MODAL ========== -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-box w-full max-w-2xl mx-4">
+      <div class="glass-card p-2">
+        <div class="flex items-center gap-3 px-4">
+          <iconify-icon icon="lucide:search" width="20" class="text-neutral-400"></iconify-icon>
+          <input type="text" placeholder="Search articles, topics, categories..."
+            class="bg-transparent border-none outline-none py-4 text-lg flex-1 text-white placeholder-neutral-500 font-light"
+            id="searchInput" autocomplete="off">
+          <kbd
+            class="hidden sm:inline-block px-2 py-1 text-xs text-neutral-500 border border-neutral-700 rounded-md">ESC</kbd>
+        </div>
+        <div class="border-t border-white/5 mt-1 pt-4 px-4 pb-3">
+          <p class="text-xs text-neutral-500 uppercase tracking-widest mb-3">Quick Links</p>
+          <div class="space-y-2" id="searchResults">
+            <a href="#featured"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors search-link">
+              <iconify-icon icon="lucide:file-text" width="16" class="text-accent"></iconify-icon>
+              <span class="text-sm text-neutral-300">Featured Posts</span>
+            </a>
+            <a href="#categories"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors search-link">
+              <iconify-icon icon="lucide:grid-3x3" width="16" class="text-accent"></iconify-icon>
+              <span class="text-sm text-neutral-300">Browse Categories</span>
+            </a>
+            <a href="#about"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors search-link">
+              <iconify-icon icon="lucide:user" width="16" class="text-accent"></iconify-icon>
+              <span class="text-sm text-neutral-300">About Me</span>
+            </a>
+            <a href="#articles"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors search-link">
+              <iconify-icon icon="lucide:layout-grid" width="16" class="text-accent"></iconify-icon>
+              <span class="text-sm text-neutral-300">Latest Articles</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== TOAST ========== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="font-display text-xl font-semibold tracking-tight text-white magnetic-btn" data-magnetic>
+        <span class="text-accent">A</span>ARON<span class="text-neutral-500">.VOSS</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#featured"
+          class="text-sm text-neutral-400 hover:text-white transition-colors animated-underline magnetic-btn"
+          data-magnetic>Featured</a>
+        <a href="#categories"
+          class="text-sm text-neutral-400 hover:text-white transition-colors animated-underline magnetic-btn"
+          data-magnetic>Categories</a>
+        <a href="#about"
+          class="text-sm text-neutral-400 hover:text-white transition-colors animated-underline magnetic-btn"
+          data-magnetic>About</a>
+        <a href="#articles"
+          class="text-sm text-neutral-400 hover:text-white transition-colors animated-underline magnetic-btn"
+          data-magnetic>Articles</a>
+      </div>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-3">
+        <button id="searchBtn"
+          class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white/20 transition-all magnetic-btn"
+          data-magnetic>
+          <iconify-icon icon="lucide:search" width="16"></iconify-icon>
+        </button>
+        <button id="themeToggle"
+          class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white/20 transition-all magnetic-btn"
+          data-magnetic>
+          <iconify-icon icon="lucide:sun" width="16" class="dark-icon"></iconify-icon>
+          <iconify-icon icon="lucide:moon" width="16" class="light-icon hidden"></iconify-icon>
+        </button>
+        <button id="mobileMenuBtn"
+          class="md:hidden w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-400">
+          <iconify-icon icon="lucide:menu" width="18" id="menuIcon"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== MOBILE MENU ========== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#featured" class="text-3xl font-display font-medium text-white mobile-nav-link">Featured</a>
+    <a href="#categories" class="text-3xl font-display font-medium text-white mobile-nav-link">Categories</a>
+    <a href="#about" class="text-3xl font-display font-medium text-white mobile-nav-link">About</a>
+    <a href="#articles" class="text-3xl font-display font-medium text-white mobile-nav-link">Articles</a>
+    <a href="#newsletter" class="text-3xl font-display font-medium text-accent mobile-nav-link">Subscribe</a>
+  </div>
+
+  <!-- ========== SOCIAL SIDEBAR ========== -->
+  <div class="social-sidebar hidden lg:flex">
+    <a href="#" aria-label="Twitter"><iconify-icon icon="lucide:twitter" width="18"></iconify-icon></a>
+    <a href="#" aria-label="GitHub"><iconify-icon icon="lucide:github" width="18"></iconify-icon></a>
+    <a href="#" aria-label="LinkedIn"><iconify-icon icon="lucide:linkedin" width="18"></iconify-icon></a>
+    <a href="#" aria-label="Dribbble"><iconify-icon icon="lucide:dribbble" width="18"></iconify-icon></a>
+    <div class="social-line"></div>
+  </div>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
+    <!-- Background Gradient -->
+    <div class="hero-gradient"></div>
+
+    <!-- Floating Shapes -->
+    <div class="floating-shape w-96 h-96 bg-accent top-1/4 -left-48" style="animation-delay: 0s;"></div>
+    <div class="floating-shape w-72 h-72 bg-yellow-500 bottom-1/4 -right-36" style="animation-delay: -7s;"></div>
+    <div class="floating-shape w-64 h-64 bg-accent top-10 right-1/4" style="animation-delay: -14s;"></div>
+
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 opacity-[0.03]"
+      style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 80px 80px;">
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <!-- Label -->
+      <div
+        class="hero-label inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 mb-8 opacity-0">
+        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        <span class="text-xs font-medium tracking-widest uppercase text-neutral-400">Writer · Thinker · Creator</span>
+      </div>
+
+      <!-- Main Title -->
+      <h1
+        class="hero-title font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-medium tracking-tighter leading-[0.9] mb-8">
+        <span class="block">Stories That</span>
+        <span class="block text-accent">Shape Minds</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p
+        class="hero-subtitle text-lg md:text-xl text-neutral-400 font-light max-w-2xl mx-auto mb-12 leading-relaxed opacity-0">
+        Exploring the intersection of design, technology, and human experience through thoughtful writing and visual
+        storytelling.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
+        <a href="#featured"
+          class="magnetic-btn group inline-flex items-center gap-2 px-8 py-4 bg-accent text-white rounded-full text-sm font-semibold tracking-wide uppercase hover:bg-white hover:text-black transition-all duration-300">
+          Read Stories
+          <iconify-icon icon="lucide:arrow-right" width="16"
+            class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+        </a>
+        <a href="#about"
+          class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 border border-white/15 text-white rounded-full text-sm font-semibold tracking-wide uppercase hover:bg-white/5 transition-all duration-300">
+          About Me
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div
+      class="scroll-indicator absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hero-scroll opacity-0">
+      <span class="text-[10px] uppercase tracking-[0.2em] text-neutral-500">Scroll</span>
+      <div class="w-px h-12 bg-gradient-to-b from-accent to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURED BLOG POSTS ========== -->
+  <section class="relative py-32 px-6" id="featured">
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div class="flex items-end justify-between mb-16 section-header">
+        <div>
+          <span class="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-4 block">Featured</span>
+          <h2 class="font-display text-4xl md:text-5xl font-medium tracking-tighter text-white">
+            Editor's Picks
+          </h2>
+        </div>
+        <a href="#articles"
+          class="hidden md:flex items-center gap-2 text-sm text-neutral-400 hover:text-accent transition-colors animated-underline magnetic-btn"
+          data-magnetic>
+          View all
+          <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+        </a>
+      </div>
+
+      <!-- Featured Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Main Featured -->
+        <div class="glass-card overflow-hidden group featured-card lg:row-span-2">
+          <div class="overflow-hidden aspect-[16/10] lg:aspect-auto lg:h-full">
+            <img src="https://picsum.photos/seed/featured-main/800/1000.jpg" alt="Featured Post"
+              class="blog-card-img w-full h-full object-cover">
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="px-3 py-1 bg-accent/20 text-accent text-xs font-semibold rounded-full uppercase tracking-wider">Design</span>
+              <span class="text-xs text-neutral-400">Dec 15, 2024</span>
+              <button class="copy-link-btn ml-auto text-neutral-400 hover:text-accent transition-colors"
+                onclick="copyLink('featured-post-1')">
+                <iconify-icon icon="lucide:link" width="14"></iconify-icon>
+              </button>
+            </div>
+            <h3 class="font-display text-2xl md:text-3xl font-medium tracking-tight text-white mb-3">
+              The Invisible Language of Design: How Layouts Speak
+            </h3>
+            <p class="text-neutral-400 text-sm leading-relaxed max-w-lg">
+              Every pixel carries meaning. Discover how the silent architecture of visual design communicates emotions,
+              guides attention, and shapes our digital experiences.
+            </p>
+          </div>
+        </div>
+
+        <!-- Secondary Featured 1 -->
+        <div class="glass-card overflow-hidden group featured-card relative">
+          <div class="overflow-hidden aspect-[16/9]">
+            <img src="https://picsum.photos/seed/featured-sec1/800/450.jpg" alt="Featured Post"
+              class="blog-card-img w-full h-full object-cover">
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-full uppercase tracking-wider">Technology</span>
+              <span class="text-xs text-neutral-400">Dec 10, 2024</span>
+              <button class="copy-link-btn ml-auto text-neutral-400 hover:text-accent transition-colors"
+                onclick="copyLink('featured-post-2')">
+                <iconify-icon icon="lucide:link" width="14"></iconify-icon>
+              </button>
+            </div>
+            <h3 class="font-display text-xl font-medium tracking-tight text-white mb-2">
+              AI and the Future of Creative Expression
+            </h3>
+            <p class="text-neutral-400 text-sm leading-relaxed">
+              Can machines truly create? Exploring the boundaries between artificial intelligence and human artistry.
+            </p>
+          </div>
+        </div>
+
+        <!-- Secondary Featured 2 -->
+        <div class="glass-card overflow-hidden group featured-card relative">
+          <div class="overflow-hidden aspect-[16/9]">
+            <img src="https://picsum.photos/seed/featured-sec2/800/450.jpg" alt="Featured Post"
+              class="blog-card-img w-full h-full object-cover">
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-full uppercase tracking-wider">Culture</span>
+              <span class="text-xs text-neutral-400">Dec 5, 2024</span>
+              <button class="copy-link-btn ml-auto text-neutral-400 hover:text-accent transition-colors"
+                onclick="copyLink('featured-post-3')">
+                <iconify-icon icon="lucide:link" width="14"></iconify-icon>
+              </button>
+            </div>
+            <h3 class="font-display text-xl font-medium tracking-tight text-white mb-2">
+              Digital Minimalism in an Age of Excess
+            </h3>
+            <p class="text-neutral-400 text-sm leading-relaxed">
+              Finding clarity by subtraction — a guide to intentional technology use and mindful digital living.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HORIZONTAL SCROLL GALLERY ========== -->
+  <section class="py-20 horizontal-scroll-wrapper">
+    <div class="max-w-7xl mx-auto px-6 mb-12 section-header">
+      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-4 block">Gallery</span>
+      <h2 class="font-display text-3xl md:text-4xl font-medium tracking-tighter text-white">
+        Visual Explorations
+      </h2>
+    </div>
+    <div class="horizontal-scroll-track" id="horizontalTrack">
+      <div class="min-w-[85vw] md:min-w-[40vw] lg:min-w-[30vw] flex-shrink-0">
+        <div class="img-reveal rounded-2xl overflow-hidden aspect-[4/5]">
+          <img src="https://picsum.photos/seed/gallery1/600/750.jpg" alt="Gallery" class="w-full h-full object-cover">
+        </div>
+        <p class="text-sm text-neutral-500 mt-4 px-2">Tokyo Nights — Photography</p>
+      </div>
+      <div class="min-w-[85vw] md:min-w-[40vw] lg:min-w-[30vw] flex-shrink-0">
+        <div class="img-reveal rounded-2xl overflow-hidden aspect-[4/5]">
+          <img src="https://picsum.photos/seed/gallery2/600/750.jpg" alt="Gallery" class="w-full h-full object-cover">
+        </div>
+        <p class="text-sm text-neutral-500 mt-4 px-2">Abstract Forms — Generative Art</p>
+      </div>
+      <div class="min-w-[85vw] md:min-w-[40vw] lg:min-w-[30vw] flex-shrink-0">
+        <div class="img-reveal rounded-2xl overflow-hidden aspect-[4/5]">
+          <img src="https://picsum.photos/seed/gallery3/600/750.jpg" alt="Gallery" class="w-full h-full object-cover">
+        </div>
+        <p class="text-sm text-neutral-500 mt-4 px-2">Urban Geometry — Architecture</p>
+      </div>
+      <div class="min-w-[85vw] md:min-w-[40vw] lg:min-w-[30vw] flex-shrink-0">
+        <div class="img-reveal rounded-2xl overflow-hidden aspect-[4/5]">
+          <img src="https://picsum.photos/seed/gallery4/600/750.jpg" alt="Gallery" class="w-full h-full object-cover">
+        </div>
+        <p class="text-sm text-neutral-500 mt-4 px-2">Light Studies — Experimental</p>
+      </div>
+      <div class="min-w-[85vw] md:min-w-[40vw] lg:min-w-[30vw] flex-shrink-0">
+        <div class="img-reveal rounded-2xl overflow-hidden aspect-[4/5]">
+          <img src="https://picsum.photos/seed/gallery5/600/750.jpg" alt="Gallery" class="w-full h-full object-cover">
+        </div>
+        <p class="text-sm text-neutral-500 mt-4 px-2">Silent Spaces — Minimalism</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CATEGORIES SECTION ========== -->
+  <section class="py-32 px-6" id="categories">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 section-header">
+        <span class="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-4 block">Explore</span>
+        <h2 class="font-display text-4xl md:text-5xl font-medium tracking-tighter text-white mb-4">
+          Browse by Topic
+        </h2>
+        <p class="text-neutral-400 font-light max-w-xl mx-auto">
+          Dive into subjects that spark curiosity and challenge conventional thinking.
+        </p>
+      </div>
+
+      <!-- Category Tags -->
+      <div class="flex flex-wrap justify-center gap-3 mb-16 category-filters">
+        <span class="category-tag active text-neutral-300" data-filter="all">All Posts</span>
+        <span class="category-tag text-neutral-400" data-filter="design">Design</span>
+        <span class="category-tag text-neutral-400" data-filter="technology">Technology</span>
+        <span class="category-tag text-neutral-400" data-filter="culture">Culture</span>
+        <span class="category-tag text-neutral-400" data-filter="philosophy">Philosophy</span>
+        <span class="category-tag text-neutral-400" data-filter="creativity">Creativity</span>
+        <span class="category-tag text-neutral-400" data-filter="productivity">Productivity</span>
+      </div>
+
+      <!-- Category Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="categoryGrid">
+        <!-- Card 1 -->
+        <div class="glass-card p-8 category-card" data-category="design">
+          <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:palette" width="24" class="text-accent"></iconify-icon>
+          </div>
+          <h3 class="font-display text-xl font-medium tracking-tight text-white mb-3">Design Systems</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed mb-6">Building scalable visual languages that bridge
+            consistency and creative flexibility.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-neutral-500">12 articles</span>
+            <a href="#" class="text-accent text-sm hover:underline animated-underline">Explore →</a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card p-8 category-card" data-category="technology">
+          <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:cpu" width="24" class="text-blue-400"></iconify-icon>
+          </div>
+          <h3 class="font-display text-xl font-medium tracking-tight text-white mb-3">Emerging Tech</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed mb-6">Making sense of AI, Web3, spatial computing, and
+            their impact on society.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-neutral-500">9 articles</span>
+            <a href="#" class="text-blue-400 text-sm hover:underline animated-underline">Explore →</a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card p-8 category-card" data-category="culture">
+          <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:globe" width="24" class="text-purple-400"></iconify-icon>
+          </div>
+          <h3 class="font-display text-xl font-medium tracking-tight text-white mb-3">Digital Culture</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed mb-6">Examining how the internet reshapes identity,
+            community, and human connection.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-neutral-500">7 articles</span>
+            <a href="#" class="text-purple-400 text-sm hover:underline animated-underline">Explore →</a>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="glass-card p-8 category-card" data-category="philosophy">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:brain" width="24" class="text-emerald-400"></iconify-icon>
+          </div>
+          <h3 class="font-display text-xl font-medium tracking-tight text-white mb-3">Deep Thinking</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed mb-6">Philosophical reflections on consciousness, meaning,
+            and the modern condition.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-neutral-500">5 articles</span>
+            <a href="#" class="text-emerald-400 text-sm hover:underline animated-underline">Explore →</a>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="glass-card p-8 category-card" data-category="creativity">
+          <div class="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:sparkles" width="24" class="text-yellow-400"></iconify-icon>
+          </div>
+          <h3 class="font-display text-xl font-medium tracking-tight text-white mb-3">Creative Process</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed mb-6">Behind the scenes of ideation, experimentation, and
+            bringing ideas to life.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-neutral-500">8 articles</span>
+            <a href="#" class="text-yellow-400 text-sm hover:underline animated-underline">Explore →</a>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="glass-card p-8 category-card" data-category="productivity">
+          <div class="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:zap" width="24" class="text-rose-400"></iconify-icon>
+          </div>
+          <h3 class="font-display text-xl font-medium tracking-tight text-white mb-3">Flow State</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed mb-6">Strategies for deep work, intentional living, and
+            sustainable high performance.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-neutral-500">6 articles</span>
+            <a href="#" class="text-rose-400 text-sm hover:underline animated-underline">Explore →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="py-32 px-6" id="about">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <!-- Image -->
+        <div class="relative">
+          <div class="img-reveal aspect-[4/5] relative" id="aboutImgReveal">
+            <img src="https://picsum.photos/seed/about-portrait/600/750.jpg" alt="Aaron Voss"
+              class="w-full h-full object-cover">
+            <!-- Decorative border -->
+            <div class="absolute inset-0 border border-accent/20 rounded-3xl translate-x-6 translate-y-6 -z-10"></div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-6 -right-6 glass-card px-6 py-4 flex items-center gap-3 about-badge">
+            <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+            <span class="text-sm text-white font-medium">Available for collab</span>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="about-content">
+          <span class="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-6 block about-label">About
+            Me</span>
+          <h2 class="font-display text-4xl md:text-5xl font-medium tracking-tighter text-white mb-8 about-title">
+            Crafting stories at the edge of design & technology
+          </h2>
+          <div class="space-y-5 text-neutral-400 font-light leading-relaxed about-text">
+            <p>
+              I'm Aaron Voss — a writer, designer, and creative technologist based in Amsterdam. For the past decade,
+              I've been exploring how design thinking and emerging technology converge to shape human experience.
+            </p>
+            <p>
+              My work has been featured in Wired, Smashing Magazine, and A List Apart. I believe that the best writing
+              doesn't just inform — it transforms how you see the world.
+            </p>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-8 mt-12 pt-12 border-t border-white/5">
+            <div class="stat-item">
+              <div class="stat-number font-display text-3xl md:text-4xl font-medium text-white" data-count="147">0</div>
+              <div class="text-xs text-neutral-500 uppercase tracking-wider mt-1">Articles</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number font-display text-3xl md:text-4xl font-medium text-white" data-count="52">0</div>
+              <div class="text-xs text-neutral-500 uppercase tracking-wider mt-1">K Readers</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number font-display text-3xl md:text-4xl font-medium text-white" data-count="8">0</div>
+              <div class="text-xs text-neutral-500 uppercase tracking-wider mt-1">Years Writing</div>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="flex flex-wrap gap-2 mt-10 about-skills">
+            <span class="skill-tag">Design Thinking</span>
+            <span class="skill-tag">Creative Writing</span>
+            <span class="skill-tag">UX Research</span>
+            <span class="skill-tag">Visual Storytelling</span>
+            <span class="skill-tag">AI & Ethics</span>
+            <span class="skill-tag">Type Design</span>
+          </div>
+
+          <!-- Social Links -->
+          <div class="flex items-center gap-4 mt-10 about-socials">
+            <a href="#"
+              class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-accent hover:border-accent/30 transition-all">
+              <iconify-icon icon="lucide:twitter" width="16"></iconify-icon>
+            </a>
+            <a href="#"
+              class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-accent hover:border-accent/30 transition-all">
+              <iconify-icon icon="lucide:github" width="16"></iconify-icon>
+            </a>
+            <a href="#"
+              class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-accent hover:border-accent/30 transition-all">
+              <iconify-icon icon="lucide:linkedin" width="16"></iconify-icon>
+            </a>
+            <a href="#"
+              class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-accent hover:border-accent/30 transition-all">
+              <iconify-icon icon="lucide:mail" width="16"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LATEST ARTICLES GRID ========== -->
+  <section class="py-32 px-6" id="articles">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 section-header">
+        <span class="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-4 block">Journal</span>
+        <h2 class="font-display text-4xl md:text-5xl font-medium tracking-tighter text-white mb-4">
+          Latest Articles
+        </h2>
+        <p class="text-neutral-400 font-light max-w-xl mx-auto">
+          Recent thoughts, essays, and explorations from the writing desk.
+        </p>
+      </div>
+
+      <!-- Masonry Grid -->
+      <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6" id="articlesGrid">
+        <!-- Article 1 - Tall -->
+        <div class="glass-card overflow-hidden group article-card break-inside-avoid" data-category="design">
+          <div class="overflow-hidden aspect-[4/5]">
+            <img src="https://picsum.photos/seed/article1/600/750.jpg" alt="Article"
+              class="blog-card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-3 py-1 bg-accent/10 text-accent text-[10px] font-semibold rounded-full uppercase tracking-wider">Design</span>
+              <span class="text-xs text-neutral-500">Nov 28, 2024</span>
+            </div>
+            <h3
+              class="font-display text-lg font-medium tracking-tight text-white mb-2 group-hover:text-accent transition-colors">
+              The Typography of Silence: Negative Space as a Design Tool
+            </h3>
+            <p class="text-neutral-500 text-sm leading-relaxed mb-4">How emptiness becomes the most powerful element in
+              visual communication.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-sm text-accent hover:gap-3 transition-all">
+              Read more <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 2 - Short -->
+        <div class="glass-card overflow-hidden group article-card break-inside-avoid" data-category="technology">
+          <div class="overflow-hidden aspect-[16/10]">
+            <img src="https://picsum.photos/seed/article2/600/375.jpg" alt="Article"
+              class="blog-card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-3 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-semibold rounded-full uppercase tracking-wider">Technology</span>
+              <span class="text-xs text-neutral-500">Nov 22, 2024</span>
+            </div>
+            <h3
+              class="font-display text-lg font-medium tracking-tight text-white mb-2 group-hover:text-blue-400 transition-colors">
+              Why I Stopped Using AI for Everything
+            </h3>
+            <a href="#" class="inline-flex items-center gap-2 text-sm text-blue-400 hover:gap-3 transition-all">
+              Read more <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 3 - Medium -->
+        <div class="glass-card overflow-hidden group article-card break-inside-avoid" data-category="philosophy">
+          <div class="overflow-hidden aspect-[4/3]">
+            <img src="https://picsum.photos/seed/article3/600/450.jpg" alt="Article"
+              class="blog-card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-semibold rounded-full uppercase tracking-wider">Philosophy</span>
+              <span class="text-xs text-neutral-500">Nov 15, 2024</span>
+            </div>
+            <h3
+              class="font-display text-lg font-medium tracking-tight text-white mb-2 group-hover:text-emerald-400 transition-colors">
+              The Paradox of Choice in a Connected World
+            </h3>
+            <p class="text-neutral-500 text-sm leading-relaxed mb-4">More options don't mean more freedom. A
+              philosophical take on decision fatigue.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-sm text-emerald-400 hover:gap-3 transition-all">
+              Read more <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="glass-card overflow-hidden group article-card break-inside-avoid" data-category="creativity">
+          <div class="overflow-hidden aspect-[16/10]">
+            <img src="https://picsum.photos/seed/article4/600/375.jpg" alt="Article"
+              class="blog-card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-3 py-1 bg-yellow-500/10 text-yellow-400 text-[10px] font-semibold rounded-full uppercase tracking-wider">Creativity</span>
+              <span class="text-xs text-neutral-500">Nov 8, 2024</span>
+            </div>
+            <h3
+              class="font-display text-lg font-medium tracking-tight text-white mb-2 group-hover:text-yellow-400 transition-colors">
+              Stealing Like an Artist in the Age of Algorithms
+            </h3>
+            <a href="#" class="inline-flex items-center gap-2 text-sm text-yellow-400 hover:gap-3 transition-all">
+              Read more <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 5 - Tall -->
+        <div class="glass-card overflow-hidden group article-card break-inside-avoid" data-category="culture">
+          <div class="overflow-hidden aspect-[3/4]">
+            <img src="https://picsum.photos/seed/article5/600/800.jpg" alt="Article"
+              class="blog-card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-3 py-1 bg-purple-500/10 text-purple-400 text-[10px] font-semibold rounded-full uppercase tracking-wider">Culture</span>
+              <span class="text-xs text-neutral-500">Nov 1, 2024</span>
+            </div>
+            <h3
+              class="font-display text-lg font-medium tracking-tight text-white mb-2 group-hover:text-purple-400 transition-colors">
+              How Social Media Rewired Our Memory
+            </h3>
+            <p class="text-neutral-500 text-sm leading-relaxed mb-4">We no longer remember experiences — we remember the
+              posts about them.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-sm text-purple-400 hover:gap-3 transition-all">
+              Read more <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 6 -->
+        <div class="glass-card overflow-hidden group article-card break-inside-avoid" data-category="productivity">
+          <div class="overflow-hidden aspect-[16/10]">
+            <img src="https://picsum.photos/seed/article6/600/375.jpg" alt="Article"
+              class="blog-card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                class="px-3 py-1 bg-rose-500/10 text-rose-400 text-[10px] font-semibold rounded-full uppercase tracking-wider">Productivity</span>
+              <span class="text-xs text-neutral-500">Oct 25, 2024</span>
+            </div>
+            <h3
+              class="font-display text-lg font-medium tracking-tight text-white mb-2 group-hover:text-rose-400 transition-colors">
+              The Four-Hour Deep Work Protocol
+            </h3>
+            <p class="text-neutral-500 text-sm leading-relaxed mb-4">A structured approach to achieving flow state
+              consistently.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-sm text-rose-400 hover:gap-3 transition-all">
+              Read more <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NEWSLETTER SECTION ========== -->
+  <section class="py-32 px-6 relative overflow-hidden" id="newsletter">
+    <!-- Floating Blobs -->
+    <div class="newsletter-blob w-96 h-96 bg-accent -top-48 -left-48" style="animation-delay: 0s;"></div>
+    <div class="newsletter-blob w-72 h-72 bg-yellow-500 -bottom-36 -right-36" style="animation-delay: -5s;"></div>
+
+    <div class="max-w-3xl mx-auto text-center relative z-10">
+      <div class="glass-card p-10 md:p-16 newsletter-card">
+        <span class="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-6 block">Newsletter</span>
+        <h2 class="font-display text-3xl md:text-5xl font-medium tracking-tighter text-white mb-6 newsletter-title">
+          Stay in the loop
+        </h2>
+        <p class="text-neutral-400 font-light max-w-lg mx-auto mb-10 newsletter-desc">
+          One email per week. Curated ideas, deep dives, and exclusive content. No spam, no fluff — just thoughtful
+          writing.
+        </p>
+
+        <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="your@email.com" class="glow-input flex-1" required id="emailInput">
+          <button type="submit"
+            class="magnetic-btn px-8 py-4 bg-accent text-white rounded-xl text-sm font-semibold tracking-wide uppercase hover:bg-white hover:text-black transition-all duration-300 whitespace-nowrap">
+            Subscribe
+          </button>
+        </form>
+
+        <p class="text-xs text-neutral-600 mt-6 newsletter-note">
+          Join 2,400+ readers · Unsubscribe anytime
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INFINITE MARQUEE ========== -->
+  <section class="py-20 border-t border-b border-white/5 overflow-hidden">
+    <div class="marquee-track">
+      <div class="flex items-center gap-8 px-4 whitespace-nowrap">
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Design</span>
+        <span class="text-accent text-2xl">✦</span>
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Technology</span>
+        <span class="text-accent text-2xl">✦</span>
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Culture</span>
+        <span class="text-accent text-2xl">✦</span>
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Philosophy</span>
+        <span class="text-accent text-2xl">✦</span>
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Creativity</span>
+        <span class="text-accent text-2xl">✦</span>
+      </div>
+      <div class="flex items-center gap-8 px-4 whitespace-nowrap">
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Design</span>
+        <span class="text-accent text-2xl">✦</span>
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Technology</span>
+        <span class="text-accent text-2xl">✦</span>
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Culture</span>
+        <span class="text-accent text-2xl">✦</span>
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Philosophy</span>
+        <span class="text-accent text-2xl">✦</span>
+        <span class="font-display text-6xl md:text-8xl font-medium tracking-tighter text-white/[0.04]">Creativity</span>
+        <span class="text-accent text-2xl">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <a href="#" class="font-display text-2xl font-semibold tracking-tight text-white">
+            <span class="text-accent">A</span>ARON<span class="text-neutral-500">.VOSS</span>
+          </a>
+          <p class="text-neutral-500 font-light mt-4 max-w-sm leading-relaxed">
+            Writing at the intersection of design, technology, and what it means to be human in a digital world.
+          </p>
+          <div class="flex items-center gap-4 mt-6">
+            <a href="#"
+              class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-500 hover:text-accent hover:border-accent/30 transition-all">
+              <iconify-icon icon="lucide:twitter" width="16"></iconify-icon>
+            </a>
+            <a href="#"
+              class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-500 hover:text-accent hover:border-accent/30 transition-all">
+              <iconify-icon icon="lucide:github" width="16"></iconify-icon>
+            </a>
+            <a href="#"
+              class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-500 hover:text-accent hover:border-accent/30 transition-all">
+              <iconify-icon icon="lucide:linkedin" width="16"></iconify-icon>
+            </a>
+            <a href="#"
+              class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-500 hover:text-accent hover:border-accent/30 transition-all">
+              <iconify-icon icon="lucide:rss" width="16"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-neutral-400 mb-6">Navigation</h4>
+          <ul class="space-y-3">
+            <li><a href="#featured" class="text-neutral-500 hover:text-accent transition-colors text-sm">Featured</a>
+            </li>
+            <li><a href="#categories"
+                class="text-neutral-500 hover:text-accent transition-colors text-sm">Categories</a></li>
+            <li><a href="#about" class="text-neutral-500 hover:text-accent transition-colors text-sm">About</a></li>
+            <li><a href="#articles" class="text-neutral-500 hover:text-accent transition-colors text-sm">Articles</a>
+            </li>
+            <li><a href="#newsletter"
+                class="text-neutral-500 hover:text-accent transition-colors text-sm">Newsletter</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-neutral-400 mb-6">Contact</h4>
+          <ul class="space-y-3">
+            <li><a href="mailto:hello@aaronvoss.com"
+                class="text-neutral-500 hover:text-accent transition-colors text-sm">hello@aaronvoss.com</a></li>
+            <li><span class="text-neutral-500 text-sm">Amsterdam, NL</span></li>
+            <li><a href="#" class="text-neutral-500 hover:text-accent transition-colors text-sm">Press Kit</a></li>
+            <li><a href="#" class="text-neutral-500 hover:text-accent transition-colors text-sm">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-neutral-600">© 2024 Aaron Voss. All rights reserved.</p>
+        <p class="text-xs text-neutral-600">Crafted with intention & care</p>
+      </div>
+    </div>
+  </footer>
 
 
 
